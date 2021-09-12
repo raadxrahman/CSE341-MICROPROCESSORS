@@ -1,6 +1,7 @@
 ; Md. Mahbubur Rahman, ID: 19101069
 
-;1^m + 2^m - 3^m + 4^m - ........ +/- n^m.
+;1^m + 2^m - 3^m + 4^m - ........ +/- n^m.   
+
 ; m=3, n=2, output=9
 ; m=4, n=3, output=-64
 
@@ -78,21 +79,21 @@ int 21h
              
             
     case2:
-    mov ax,0
+    mov ax,0                        ; m==0
     mov al, bh
     mov ch, 2h
     div ch                          ; al(m)/ch(2) [even/odd test]
-    mov dx, 0
-    cmp ah, 1                       ; remainder 1?
+    mov dx, 0 
     
-    je odd                          ; remainder 1
-    mov dl, ah
+    cmp ah, 1                       ; remainder 1?
+    je odd                          ; remainder 1(odd)
+    mov dl, ah                      ; n=even
     add dl, 32h                     ; 0 + 32h(2) = 2 
     jmp proceed
     
     odd:
     mov dl, ah
-    add dl, 30h                     ; 0 + 30h(0) = 0
+    add dl, 30h                     ; 1 + 30h(0) = 1
     jmp proceed        
             
     proceed:
